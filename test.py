@@ -1,6 +1,7 @@
 import time;
 
 def main():
+    #test
 	print time.strftime('%H')
 
 
