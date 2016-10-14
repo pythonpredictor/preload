@@ -1,0 +1,19 @@
+- app: a class represents each app.
+    -- name
+    -- value # will change to 3 seperated value for morning, afternoon, night
+    -- num_mor_usg: number used during morning(0 - 12) (backed by queue)
+    -- num_non_usg: ... afternoon(12 - 19)
+    -- num_ngt_usg: ... night(19 - 24)
+    -- methods
+        --- is_opened: enqueue a time point
+        --- get_mor_usg: return morning usage queue after removing time point
+        passing 2 weeks threshold
+        --- get_non_usg: ...
+        --- get_ngt_usg: ...
+
+- applist: a class contains all app exists
+    -- list
+    -- methods
+        --- load_app: call app.is_open() to add time point
+
+- val_cal: a class calculate each app's priority value
