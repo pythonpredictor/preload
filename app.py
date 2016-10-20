@@ -5,7 +5,6 @@ from collections import deque
 # time of app is loaded.
 
 class app:
-
 	def __init__(self, name):
 		self.name = name
 		# use a queue to store the time of app is loaded
