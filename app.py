@@ -8,7 +8,7 @@ class app:
 
 	def __init__(self, name):
 		self.name = name
-        # use a queue to store the time of app is loaded
+		# use a queue to store the time of app is loaded
 		self.num_mor_usg = deque()
 		self.num_non_usg = deque()
 		self.num_ngt_usg = deque()

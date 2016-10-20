@@ -5,7 +5,7 @@ class applist:
 
 	def __init__(self):
         # dict contains all apps
-		self.list = {}
+        self.list = {}
         # use three priority queues to put app with priority value
         self.mor_pq = []
         self.non_pq = []
@@ -13,10 +13,10 @@ class applist:
 
 	def load_app(self, name):
         # create app if it doesn't exist
-		if (name not in self.list):
-			self.list[name] = app(name)
+        if (name not in self.list):
+            self.list[name] = app(name)
         # call is_open method push time point
-		self.list[name].is_opened()
+        self.list[name].is_opened()
 
     # get first n of apps in list
     def get_mor_app(self, num):
