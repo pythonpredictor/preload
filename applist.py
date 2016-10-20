@@ -10,7 +10,7 @@ class applist:
         self.non_pq = []
         self.ngt_pq = []
 
-	def load_app(self, name):
+    def load_app(self, name):
         # create app if it doesn't exist
         if (name not in self.list):
             self.list[name] = app(name)
