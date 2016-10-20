@@ -2,8 +2,7 @@ import heapq
 
 # applist class store all apps and their priority value.
 class applist:
-
-	def __init__(self):
+    def __init__(self):
         # dict contains all apps
         self.list = {}
         # use three priority queues to put app with priority value
