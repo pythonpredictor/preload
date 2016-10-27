@@ -1,4 +1,5 @@
 import heapq
+import time
 
 # applist class store all apps and their priority value.
 class applist:
@@ -6,6 +7,7 @@ class applist:
         # dict contains all apps
         self.list = {}
         # use three priority queues to put app with priority value
+        self.pq = []
         self.mor_pq = []
         self.non_pq = []
         self.ngt_pq = []
@@ -17,17 +19,24 @@ class applist:
         # call is_open method push time point
         self.list[name].is_opened()
 
+    def get_app(self, num):
+    	return heapq.nlargest(num, self.pq)
+
     # get first n of apps in list
     def get_mor_app(self, num):
-        return heapq.nsmallest(num, self.mor_pq)
+        return heapq.nlargest(num, self.mor_pq)
 
     # get first n of apps in list
     def get_non_app(self, num):
-        return heapq.nsmallest(num, self.non_pq)
+        return heapq.nlargest(num, self.non_pq)
 
     # get first n of apps in list
     def get_ngt_app(self, num):
-        return heapq.nsmallest(num, self.ngt_pq)
+        return heapq.nlargest(num, self.ngt_pq)
+
+    def cal_val(self):
+    	for app in self.list:
+    		heapq.heappush(self.pq, (app.mor_val + app.non_val + app.ngt_val, app))
 
     def cal_mor_val(self):
         # initialize list to empty each time
@@ -35,7 +44,8 @@ class applist:
         for app in self.list:
             # flip value for min heap, keep app most frequent used
             # at root
-            heapq.heappush(self.mor_pq, (-len(app.num_mor_usg), app))
+            app.mor_val = cal_exp(app.get_mor_usg)
+            heapq.heappush(self.mor_pq, (app.mor_val, app))
 
     def cal_non_val(self):
         # initialize list to empty each time
@@ -43,7 +53,8 @@ class applist:
         for app in self.list:
             # flip value for min heap, keep app most frequent used
             # at root
-            heapq.heappush(self.non_pq, (-len(app.num_non_usg), app))
+            app.non_val = cal_exp(app.get_non_usg)
+            heapq.heappush(self.non_pq, (app.non_val, app))
 
     def cal_ngt_val(self):
         # initialize list to empty each time
@@ -51,4 +62,14 @@ class applist:
         for app in self.list:
             # flip value for min heap, keep app most frequent used
             # at root
-            heapq.heappush(self.ngt_pq, (-len(app.num_ngt_usg), app))
+            app.ngt_val = cal_exp(app.get_ngt_usg)
+            heapq.heappush(self.ngt_pq, (app.ngt_val, app))
+
+    # exponentially decrease the priority value
+    def cal_exp(self, dq):
+    	val = 0;
+    	for tp in dp:
+    		val += math.exp((tp - time.time()) / (14 * 24 * 2400))
+    	# increase all value by multiply 10
+    	val *= 10
+    	return val
