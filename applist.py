@@ -1,5 +1,6 @@
 import heapq
 import time
+import csv
 
 # applist class store all apps and their priority value.
 class applist:
@@ -8,9 +9,21 @@ class applist:
         self.list = {}
         # use three priority queues to put app with priority value
         self.pq = []
-        self.mor_pq = []
-        self.non_pq = []
-        self.ngt_pq = []
+
+    # writes result to csv file
+    def get_result(self, path, num):
+        f = open(path, 'wt')
+        try:
+            writer = csv.writer(f)
+            writer.writerow(('app', 'overall', 'mor', 'non', 'ngt'));
+            applist = get_app(num)
+            for app in applist:
+                writer.writerow((app, app.mor_val + app.non_val + app.ngt_val, app.mor_val, app.non_val, app.ngt_val))
+        finally:
+            f.close()
+
+    def get_result(self, num):
+        get_result(self, 'default.csv', num)
 
     def load_app(self, name):
         # create app if it doesn't exist
@@ -20,50 +33,17 @@ class applist:
         self.list[name].is_opened()
 
     def get_app(self, num):
+        cal_val()
     	return heapq.nlargest(num, self.pq)
 
-    # get first n of apps in list
-    def get_mor_app(self, num):
-        return heapq.nlargest(num, self.mor_pq)
-
-    # get first n of apps in list
-    def get_non_app(self, num):
-        return heapq.nlargest(num, self.non_pq)
-
-    # get first n of apps in list
-    def get_ngt_app(self, num):
-        return heapq.nlargest(num, self.ngt_pq)
-
+    # calculate priority value
     def cal_val(self):
     	for app in self.list:
+            app.mor_val = cal_exp(num_mor_usg)
+            app.non_val = cal_exp(num_non_usg)
+            app.ngt_val = cal_exp(num_ngt_usg)
+            # push each app into heap according to value
     		heapq.heappush(self.pq, (app.mor_val + app.non_val + app.ngt_val, app))
-
-    def cal_mor_val(self):
-        # initialize list to empty each time
-        self.mor_pq = []
-        for app in self.list:
-            # flip value for min heap, keep app most frequent used
-            # at root
-            app.mor_val = cal_exp(app.get_mor_usg)
-            heapq.heappush(self.mor_pq, (app.mor_val, app))
-
-    def cal_non_val(self):
-        # initialize list to empty each time
-        self.non_pq = []
-        for app in self.list:
-            # flip value for min heap, keep app most frequent used
-            # at root
-            app.non_val = cal_exp(app.get_non_usg)
-            heapq.heappush(self.non_pq, (app.non_val, app))
-
-    def cal_ngt_val(self):
-        # initialize list to empty each time
-        self.ngt_pq = []
-        for app in self.list:
-            # flip value for min heap, keep app most frequent used
-            # at root
-            app.ngt_val = cal_exp(app.get_ngt_usg)
-            heapq.heappush(self.ngt_pq, (app.ngt_val, app))
 
     # exponentially decrease the priority value
     def cal_exp(self, dq):
