@@ -16,7 +16,7 @@ class SimModule(metaclass=ABCMeta):
         self.simulator = simulator
 
     def get_name(self):
-        return self.get_name()
+        return self.name
 
     def get_type(self):
         return self.module_type
