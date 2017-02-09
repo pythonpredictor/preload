@@ -20,7 +20,7 @@ class app:
 		# add time in queue structure
 		if (time.strftime('%H') < 12):
 			self.num_mor_usg.appendleft(time.time())
-		else if (time.strftime('%H') > 19):
+		elif (time.strftime('%H') > 19):
 			self.num_ngt_usg.appendleft(time.time())
 		else:
 			self.num_non_usg.appendleft(time.time())

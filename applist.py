@@ -1,8 +1,10 @@
+from app import app
+from math import exp
 import heapq
 import time
 import csv
 
-# applist class store all apps and their priority value.
+# list class store all apps and their priority value.
 class applist:
     def __init__(self):
         # dict contains all apps
@@ -16,40 +18,40 @@ class applist:
         try:
             writer = csv.writer(f)
             writer.writerow(('app', 'overall', 'mor', 'non', 'ngt'));
-            applist = get_app(num)
-            for app in applist:
-                writer.writerow((app, app.mor_val + app.non_val + app.ngt_val, app.mor_val, app.non_val, app.ngt_val))
+            list = self.get_app(num)
+            for app in self.list:
+                writer.writerow((app, self.list[app].mor_val + self.list[app].non_val +
+                    self.list[app].ngt_val, self.list[app].mor_val, self.list[app].non_val,
+                    self.list[app].ngt_val))
         finally:
             f.close()
 
-    def get_result(self, num):
-        get_result(self, 'default.csv', num)
-
     def load_app(self, name):
         # create app if it doesn't exist
-        if (name not in self.list):
+        if name not in self.list:
             self.list[name] = app(name)
         # call is_open method push time point
         self.list[name].is_opened()
 
     def get_app(self, num):
-        cal_val()
-    	return heapq.nlargest(num, self.pq)
+        self.cal_val()
+        return heapq.nlargest(num, self.pq)
 
     # calculate priority value
     def cal_val(self):
-    	for app in self.list:
-            app.mor_val = cal_exp(num_mor_usg)
-            app.non_val = cal_exp(num_non_usg)
-            app.ngt_val = cal_exp(num_ngt_usg)
+        self.pq = []
+        for app in self.list:
+            self.list[app].mor_val = self.cal_exp(self.list[app].num_mor_usg)
+            self.list[app].non_val = self.cal_exp(self.list[app].num_non_usg)
+            self.list[app].ngt_val = self.cal_exp(self.list[app].num_ngt_usg)
             # push each app into heap according to value
-    		heapq.heappush(self.pq, (app.mor_val + app.non_val + app.ngt_val, app))
+            heapq.heappush(self.pq, (self.list[app].mor_val + self.list[app].non_val + self.list[app].ngt_val, app))
 
     # exponentially decrease the priority value
     def cal_exp(self, dq):
-    	val = 0;
-    	for tp in dp:
-    		val += math.exp((tp - time.time()) / (14 * 24 * 2400))
-    	# increase all value by multiply 10
-    	val *= 10
-    	return val
+        val = 0;
+        for tp in dq:
+            val += exp((tp - time.time()) / (14 * 24 * 2400))
+        # increase all value by multiply 10
+        val *= 10
+        return val
