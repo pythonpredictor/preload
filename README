@@ -1,1 +1,3 @@
 1. This part mainly focuses on get number of being used for each app.
+
+command: python3 uamp_sim.py --trace traces/trace.json.gz  --sim_config sample.cfg

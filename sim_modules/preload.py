@@ -8,10 +8,14 @@ class Preload(SimModule):
         self.simulator = simulator
 
     def build(self):
-        self.simulator.subscribe(EventType.PRELOAD_APP, self.callback)
+        self.simulator.subscribe(EventType.PSEUDO, self.callback)
 
     def finish(self):
         pass
 
     def callback(self, event):
-        print('This is a test for preload predictor')
+    	# This if statement should be modified
+    	# so that it checks if the preload is successful
+    	if event.event_type == EventType.PSEUDO:
+    		print("Proload Successful")
+    	print('This is a test for preload predictor')
