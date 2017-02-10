@@ -18,9 +18,9 @@ class app:
 
 	def is_opened(self):
 		# add time in queue structure
-		if (time.strftime('%H') < 12):
+		if (float(time.strftime('%H')) < 12):
 			self.num_mor_usg.appendleft(time.time())
-		elif (time.strftime('%H') > 19):
+		elif (float(time.strftime('%H')) > 19):
 			self.num_ngt_usg.appendleft(time.time())
 		else:
 			self.num_non_usg.appendleft(time.time())
