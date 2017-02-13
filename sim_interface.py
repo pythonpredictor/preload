@@ -4,7 +4,7 @@ from enum import Enum, unique
 
 @unique
 class SimModuleType(Enum):
-    PRELOAD_PREDICTOR = 'preload-predictor'
+    CHROME_PRELOAD_PREDICTOR = 'chrome-preload-predictor'
     REUSE_PREDICTOR = 'reuse-predictor'
     MEMORY_MANAGER = 'memory-manager'
 
