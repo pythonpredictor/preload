@@ -12,14 +12,14 @@ class ChromePreloader(SimModule):
         self.number_correct = 0
 
     def build(self):
-        self.simulator.subscribe(EventType.SCREEN, self.preloadNetflix)
+        self.simulator.subscribe(EventType.SCREEN, self.preloadChrome)
         self.simulator.subscribe(EventType.APP_LAUNCH, self.verify)
 
     def finish(self):
         pass
 
     # method to handle the event type being called
-    def preloadNetflix(self, event):
+    def preloadChrome(self, event):
         # This if statement should be modified
         # so that it checks if the preload is successful
         self.simulator.broadcast(AppLaunchEvent(time.time(),
