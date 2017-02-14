@@ -1,6 +1,6 @@
 from sim_interface import SimModule
-from events import EventType
-import csv
+from events import EventType, AppLaunchEvent
+import time
 
 
 class ChromePreloader(SimModule):
@@ -13,24 +13,28 @@ class ChromePreloader(SimModule):
 
     def build(self):
         self.simulator.subscribe(EventType.SCREEN, self.preloadNetflix)
+        self.simulator.subscribe(EventType.APP_LAUNCH, self.verify)
 
     def finish(self):
         pass
 
-    #method to handle the event type being called
+    # method to handle the event type being called
     def preloadNetflix(self, event):
-    	# This if statement should be modified
-    	# so that it checks if the preload is successful
-        self.simulator.broadcast("org.chromium.chrome.browser.document.ChromeLauncherActivity")
-
+        # This if statement should be modified
+        # so that it checks if the preload is successful
+        self.simulator.broadcast(AppLaunchEvent(time.time(),
+                                                "org.chromium.chrome.browser.document.ChromeLauncherActivity"))
+        """
         # make an alarm that goes off in 5 minutes or until something happens
         alarm = None
         self.simulatorregister_alarm(alarm, verify)
-
-
-        #
-    	# if event.event_type == EventType.PSEUDO:
-    	# 	print("Preload Successful")
-    	# print('This is a test for preload predictor')
-    def verify(self):
-        number_correct += 1
+        """
+    # method to verify the preload result
+    def verify(self, event):
+        if event.app_id == "org.chromium.chrome.browser.document.ChromeLauncherActivity" and \
+                time.time() - event.timestamp < 5:
+            self.number_correct += 1
+            print("correct")
+        else:
+            self.number_incorrect += 1
+            print("wrong")
