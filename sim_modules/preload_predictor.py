@@ -1,5 +1,5 @@
 from sim_interface import SimModule
-from events import EventType, AppLaunchEvent
+from events import EventType, Event
 import datetime
 
 
@@ -27,7 +27,7 @@ class Preload(SimModule):
         if event.state.name == "ON" and len(self.freq_count) > 0:
             highest_app = max(self.freq_count, key=self.freq_count.get)
             self.prediction = (highest_app, event.timestamp)
-            self.simulator.broadcast(AppLaunchEvent(event.timestamp, highest_app))
+            self.simulator.broadcast(Event(event.timestamp, EventType.PRELOAD_APP))
 
     # method to verify the preload result
     def verify(self, event):
