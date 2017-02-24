@@ -41,6 +41,7 @@ class Preload(SimModule):
         app_id, timestamp = self.prediction
         if timestamp is not None and event.timestamp - timestamp < margin and event.app_id == app_id:
             self.correct += 1
+            self.prediction = (None, None)
         # update freq count dictionary
         if event.app_id in self.freq_count and timestamp is not None:
             self.freq_count.update({event.app_id: self.freq_count[event.app_id] + 1})
