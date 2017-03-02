@@ -6,7 +6,7 @@ from math import exp
 
 
 class Preload(SimModule):
-    def __init__(self, name, module_type, simulator):
+    def __init__(self, name, module_type, simulator, module_settings):
         self.name = name
         self.module_type = module_type
         self.simulator = simulator
@@ -19,7 +19,7 @@ class Preload(SimModule):
         # new variables, thinking about making it similar to freq_count
         # list of dictionaries [{morn_freq}, {aftn_freq}, {ngt_freq}]
         # freq_dict_index(time) -> the interval index
-        self.interval_time = 2
+        self.interval_time = int(module_settings["interval_time"])
         self.intervals = 24 // self.interval_time
         self.time_expon = 1
         self.index = 0

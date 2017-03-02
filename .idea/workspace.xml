@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94c4d3e4-f2c6-4a05-bd54-5d9a9fd23323" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample.cfg" afterPath="$PROJECT_DIR$/sample.cfg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sim_modules/__init__.py" afterPath="$PROJECT_DIR$/sim_modules/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sim_modules/preload_predictor.py" afterPath="$PROJECT_DIR$/sim_modules/preload_predictor.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,23 +19,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="events.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/events.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="preload_predictor.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="preload_predictor.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sim_modules/preload_predictor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="31" column="70" lean-forward="false" selection-start-line="31" selection-start-column="70" selection-end-line="31" selection-end-column="70" />
+            <state relative-caret-position="435">
+              <caret line="31" column="72" lean-forward="false" selection-start-line="31" selection-start-column="72" selection-end-line="31" selection-end-column="72" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -46,7 +35,7 @@
         <entry file="file://$PROJECT_DIR$/sim_modules/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" column="85" lean-forward="true" selection-start-line="7" selection-start-column="85" selection-end-line="7" selection-end-column="85" />
+              <caret line="7" column="102" lean-forward="false" selection-start-line="7" selection-start-column="102" selection-end-line="7" selection-end-column="102" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
@@ -54,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sample.cfg" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sample.cfg" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sample.cfg">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+            <state relative-caret-position="165">
+              <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -67,7 +56,7 @@
       <file leaf-file-name="trace.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/traces/trace.json/trace.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46590">
+            <state relative-caret-position="15">
               <caret line="3106" column="31" lean-forward="false" selection-start-line="3106" selection-start-column="19" selection-end-line="3106" selection-end-column="31" />
               <folding />
             </state>
@@ -83,9 +72,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/sim_modules/ChromePreloader.py" />
-        <option value="$PROJECT_DIR$/sample.cfg" />
         <option value="$PROJECT_DIR$/sim_modules/__init__.py" />
         <option value="$PROJECT_DIR$/sim_modules/preload_predictor.py" />
+        <option value="$PROJECT_DIR$/sample.cfg" />
       </list>
     </option>
   </component>
@@ -618,17 +607,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sim_modules/ChromePreloader.py" />
-    <entry file="file://$PROJECT_DIR$/sample.cfg">
+    <entry file="file://$PROJECT_DIR$/traces/trace.json/trace.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        <state relative-caret-position="15">
+          <caret line="3106" column="31" lean-forward="false" selection-start-line="3106" selection-start-column="19" selection-end-line="3106" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/events.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
+        <state relative-caret-position="15">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
@@ -636,31 +625,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/traces/trace.json/trace.json">
+    <entry file="file://$PROJECT_DIR$/sim_modules/preload_predictor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46590">
-          <caret line="3106" column="31" lean-forward="false" selection-start-line="3106" selection-start-column="19" selection-end-line="3106" selection-end-column="31" />
-          <folding />
+        <state relative-caret-position="435">
+          <caret line="31" column="72" lean-forward="false" selection-start-line="31" selection-start-column="72" selection-end-line="31" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sim_modules/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" column="85" lean-forward="true" selection-start-line="7" selection-start-column="85" selection-end-line="7" selection-end-column="85" />
+          <caret line="7" column="102" lean-forward="false" selection-start-line="7" selection-start-column="102" selection-end-line="7" selection-end-column="102" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sim_modules/preload_predictor.py">
+    <entry file="file://$PROJECT_DIR$/sample.cfg">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="31" column="70" lean-forward="false" selection-start-line="31" selection-start-column="70" selection-end-line="31" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="165">
+          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
