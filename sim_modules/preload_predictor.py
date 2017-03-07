@@ -25,8 +25,10 @@ class Preload(SimModule):
         self.index = 0
 
     def build(self):
-        self.simulator.subscribe(EventType.SCREEN, self.preload)
+        self.simulator.subscribe(EventType.SCREEN, self.preload, lambda event: return event.state == ScreenState.USER_PRESENT)
         self.simulator.subscribe(EventType.APP_ACTIVITY_USAGE, self.verify)
+        for x in range(self.intervals):
+            self.freq_count_list.append({})
 
     def finish(self):
         print("accuracy: " + str(self.correct / self.total_predictions))
@@ -38,17 +40,15 @@ class Preload(SimModule):
         self.index = current_hour // self.interval_time
 
         # appends the corresponding number of index to the freq_count_list
-        for x in range(self.intervals):
-            self.freq_count_list.append({})
         for app in self.freq_count_list[self.index]:
             self.freq_count_list[self.index].update({app: self.freq_count_list[self.index][app] * 0.5})
 
         # check Screen On event and preloads the app that has the highest frequency of usage
         # before preloading the app check to see if it is morning, afternoon or night and then preload the
-        # corresponding application for current time : simulator.get_current_time
+        # corresponding application for current time : simulator.get_current_time`
         # morn[freq, accessed_in_interval]
         # get hour of the time out of this current_time
-        if event.state == device.ScreenState.ON and len(self.freq_count_list[self.index]) > 0:
+        if len(self.freq_count_list[self.index]) > 0:
             highest_app = max(self.freq_count_list[self.index], key=self.freq_count_list[self.index].get)
             self.total_predictions += 1
             self.prediction = (highest_app, event.timestamp)
