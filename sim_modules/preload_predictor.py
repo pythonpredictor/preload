@@ -1,5 +1,5 @@
 from sim_interface import SimModule
-from events import EventType, Event
+from events import EventType, Event, ScreenEvent
 import device
 import datetime
 from math import exp
@@ -7,6 +7,7 @@ from math import exp
 
 class Preload(SimModule):
     def __init__(self, name, module_type, simulator, module_settings):
+        # SimModule.__init__(self, name, module_type, simulator) # calls superclass constructor
         self.name = name
         self.module_type = module_type
         self.simulator = simulator
@@ -25,7 +26,9 @@ class Preload(SimModule):
         self.index = 0
 
     def build(self):
-        self.simulator.subscribe(EventType.SCREEN, self.preload, lambda event: return event.state == ScreenState.USER_PRESENT)
+        # type object 'ScreenEvent' has no attribute 'SCREEN_UNLOCKED'
+        # self.simulator.subscribe(EventType.SCREEN, self.preload, lambda event: event.state == ScreenEvent.USER_PRESENT)
+        self.simulator.subscribe(EventType.SCREEN, self.preload)
         self.simulator.subscribe(EventType.APP_ACTIVITY_USAGE, self.verify)
         for x in range(self.intervals):
             self.freq_count_list.append({})
