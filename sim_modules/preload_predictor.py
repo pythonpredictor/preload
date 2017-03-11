@@ -3,7 +3,7 @@ from events import EventType, Event, ScreenEvent
 import device
 import datetime
 from math import exp
-
+from device import ScreenState
 
 class Preload(SimModule):
     def __init__(self, name, module_type, simulator, module_settings):
@@ -26,9 +26,7 @@ class Preload(SimModule):
         self.index = 0
 
     def build(self):
-        # type object 'ScreenEvent' has no attribute 'SCREEN_UNLOCKED'
-        # self.simulator.subscribe(EventType.SCREEN, self.preload, lambda event: event.state == ScreenEvent.USER_PRESENT)
-        self.simulator.subscribe(EventType.SCREEN, self.preload)
+        self.simulator.subscribe(EventType.SCREEN, self.preload, lambda event: event.state == ScreenState.USER_PRESENT)
         self.simulator.subscribe(EventType.APP_ACTIVITY_USAGE, self.verify)
         for x in range(self.intervals):
             self.freq_count_list.append({})
@@ -76,3 +74,8 @@ class Preload(SimModule):
         # for each app event in the frequency table, need to add a time_expon factor where it is decremented
         # at an logorithmic rate when verify is called every app in the corresponding freq_count table will
         # be logged except for the app that is called
+
+        # To-Do
+        # make every constant a setting
+
+        # 3 stats for preloaders: accuracy, coverage, timeliness
