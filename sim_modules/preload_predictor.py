@@ -37,8 +37,7 @@ class Preload(SimModule):
     # method to handle the event type being called
     def preload(self, event):
         # gets the current time and converts that into an index
-        current_hour = event.timestamp.hour
-        self.index = current_hour // self.interval_time
+        self.index = event.timestamp.hour // self.interval_time
 
         # appends the corresponding number of index to the freq_count_list
         for app in self.freq_count_list[self.index]:
@@ -64,15 +63,17 @@ class Preload(SimModule):
             self.correct += 1
             self.prediction = (None, None)
 
-        # update freq count dictionary
-        if event.app_id in self.freq_count_list[self.index] and timestamp is not None:
-            self.freq_count_list[self.index].update({event.app_id: self.freq_count_list[self.index][event.app_id] + 1})
+        # update current index to correct interval
+        self.index = event.timestamp.hour // self.interval_time
 
+        # update freq count dictionary
+        if event.app_id in self.freq_count_list[self.index]:
+            self.freq_count_list[self.index].update({event.app_id: self.freq_count_list[self.index][event.app_id] + 1})
         else:
             self.freq_count_list[self.index].update({event.app_id: 1})
 
         # for each app event in the frequency table, need to add a time_expon factor where it is decremented
-        # at an logorithmic rate when verify is called every app in the corresponding freq_count table will
+        # at an log rate when verify is called every app in the corresponding freq_count table will
         # be logged except for the app that is called
 
         # To-Do
