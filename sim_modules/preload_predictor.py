@@ -72,10 +72,6 @@ class Preload(SimModule):
         else:
             self.freq_count_list[self.index].update({event.app_id: 1})
 
-        # for each app event in the frequency table, need to add a time_expon factor where it is decremented
-        # at an log rate when verify is called every app in the corresponding freq_count table will
-        # be logged except for the app that is called
-
         # To-Do
         # make every constant a setting
 

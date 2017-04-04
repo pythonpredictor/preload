@@ -5,6 +5,7 @@ from enum import Enum, unique
 @unique
 class SimModuleType(Enum):
     CHROME_PRELOAD_PREDICTOR = 'chrome-preload-predictor'
+    # PRELOAD_PREDICTOR = 'preload-predictor'
     REUSE_PREDICTOR = 'reuse-predictor'
     MEMORY_MANAGER = 'memory-manager'
 
@@ -14,6 +15,7 @@ class SimModule(metaclass=ABCMeta):
         self.name = name
         self.module_type = module_type
         self.simulator = simulator
+        self.collect_stats = False
 
     def get_name(self):
         return self.name
@@ -21,8 +23,18 @@ class SimModule(metaclass=ABCMeta):
     def get_type(self):
         return self.module_type
 
+    def enable_stats_collection(self):
+        self.collect_stats = True
+
+    def disable_stats_collection(self):
+        self.collect_stats = False
+
     @abstractmethod
     def build(self):
+        pass
+
+    @abstractmethod
+    def print_stats(self, output):
         pass
 
     @abstractmethod
@@ -31,9 +43,6 @@ class SimModule(metaclass=ABCMeta):
 
 
 class TraceReader(metaclass=ABCMeta):
-    def __init__(self, filename):
-        self.trace_filename = filename
-
     @abstractmethod
     def build(self):
         pass
@@ -56,6 +65,14 @@ class TraceReader(metaclass=ABCMeta):
 
     @abstractmethod
     def end_of_trace(self):
+        pass
+
+    @abstractmethod
+    def get_start_time(self):
+        pass
+
+    @abstractmethod
+    def get_end_time(self):
         pass
 
 
@@ -89,5 +106,13 @@ class SimulatorBase(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def register_alarm(self, alarm, handler):
+    def register_alarm(self, alarm):
+        pass
+
+    @abstractmethod
+    def get_current_time(self):
+        pass
+
+    @abstractmethod
+    def get_device_state(self):
         pass
