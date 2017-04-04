@@ -5,9 +5,10 @@ import datetime
 from math import exp
 from device import ScreenState
 
+
 class Preload(SimModule):
     def __init__(self, name, module_type, simulator, module_settings):
-        # SimModule.__init__(self, name, module_type, simulator) # calls superclass constructor
+        super(Preload, self).__init__(name, module_type, simulator)
         self.name = name
         self.module_type = module_type
         self.simulator = simulator
@@ -72,11 +73,13 @@ class Preload(SimModule):
         else:
             self.freq_count_list[self.index].update({event.app_id: 1})
 
-        # for each app event in the frequency table, need to add a time_expon factor where it is decremented
-        # at an log rate when verify is called every app in the corresponding freq_count table will
-        # be logged except for the app that is called
+            # for each app event in the frequency table, need to add a time_expon factor where it is decremented
+            # at an log rate when verify is called every app in the corresponding freq_count table will
+            # be logged except for the app that is called
 
-        # To-Do
-        # make every constant a setting
+            # To-Do
+            # make every constant a setting
+            # 3 stats for preloaders: accuracy, coverage, timeliness
 
-        # 3 stats for preloaders: accuracy, coverage, timeliness
+    def print_stats(self, output):
+        pass
