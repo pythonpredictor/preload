@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94c4d3e4-f2c6-4a05-bd54-5d9a9fd23323" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/traces/trace.json/trace.json" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/traces/trace.json.gz" afterPath="$PROJECT_DIR$/traces/trace.json.gz" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/traces/trace.pkl.gz" afterPath="$PROJECT_DIR$/traces/trace.pkl.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sim_modules/preloadNetflix.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LICENSE" afterPath="$PROJECT_DIR$/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/device.py" afterPath="$PROJECT_DIR$/device.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events.py" afterPath="$PROJECT_DIR$/events.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample.cfg" afterPath="$PROJECT_DIR$/sample.cfg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sim_interface.py" afterPath="$PROJECT_DIR$/sim_interface.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sim_modules/__init__.py" afterPath="$PROJECT_DIR$/sim_modules/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sim_modules/preload_predictor.py" afterPath="$PROJECT_DIR$/sim_modules/preload_predictor.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trace_reader.py" afterPath="$PROJECT_DIR$/trace_reader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uamp_sim.py" afterPath="$PROJECT_DIR$/uamp_sim.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils.py" afterPath="$PROJECT_DIR$/utils.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,18 +23,30 @@
       <file leaf-file-name="preload_predictor.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sim_modules/preload_predictor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+            <state relative-caret-position="148">
+              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="uamp_sim.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="preloadNetflix.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sim_modules/preloadNetflix.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="373">
+              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="uamp_sim.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/uamp_sim.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="233" column="38" lean-forward="true" selection-start-line="233" selection-start-column="38" selection-end-line="233" selection-end-column="38" />
+            <state relative-caret-position="-572">
+              <caret line="239" column="31" lean-forward="false" selection-start-line="239" selection-start-column="31" selection-end-line="239" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -65,8 +67,8 @@
       <file leaf-file-name="sim_interface.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sim_interface.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="35" column="4" lean-forward="false" selection-start-line="35" selection-start-column="4" selection-end-line="36" selection-end-column="12" />
+            <state relative-caret-position="255">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -77,8 +79,8 @@
       <file leaf-file-name="sample.cfg" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sample.cfg">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+            <state relative-caret-position="240">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -94,10 +96,12 @@
       <list>
         <option value="$PROJECT_DIR$/sim_modules/ChromePreloader.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/sample.cfg" />
         <option value="$PROJECT_DIR$/sim_modules/__init__.py" />
+        <option value="$PROJECT_DIR$/sample.cfg" />
         <option value="$PROJECT_DIR$/sim_modules/preload_predictor.py" />
         <option value="$PROJECT_DIR$/uamp_sim.py" />
+        <option value="$PROJECT_DIR$/sim_interface.py" />
+        <option value="$PROJECT_DIR$/sim_modules/preloadNetflix.py" />
       </list>
     </option>
   </component>
@@ -352,13 +356,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/traces/trace.json/trace.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46590">
-          <caret line="3106" column="31" lean-forward="false" selection-start-line="3106" selection-start-column="19" selection-end-line="3106" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sim_modules/preload_predictor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -673,22 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sample.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -723,29 +704,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sim_interface.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="35" column="4" lean-forward="false" selection-start-line="35" selection-start-column="4" selection-end-line="36" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sim_modules/preload_predictor.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/uamp_sim.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="233" column="38" lean-forward="true" selection-start-line="233" selection-start-column="38" selection-end-line="233" selection-end-column="38" />
+        <state relative-caret-position="-572">
+          <caret line="239" column="31" lean-forward="false" selection-start-line="239" selection-start-column="31" selection-end-line="239" selection-end-column="31" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sim_interface.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sim_modules/preload_predictor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sim_modules/preloadNetflix.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
