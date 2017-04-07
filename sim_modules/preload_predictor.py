@@ -33,6 +33,7 @@ class Preload(SimModule):
             self.freq_count_list.append({})
 
     def finish(self):
+        print("total prediction: " + str(self.total_predictions))
         print("accuracy: " + str(self.correct / self.total_predictions))
 
     # method to handle the event type being called
