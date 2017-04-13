@@ -25,6 +25,9 @@ class Preload(SimModule):
         self.intervals = 24 // self.interval_time
         self.time_expon = 1
         self.index = 0
+        self.num_launched = 0
+        self.timeliness = []
+        self.prev_app_launched = None
 
     def build(self):
         self.simulator.subscribe(EventType.SCREEN, self.preload, lambda event: event.state == ScreenState.USER_PRESENT)
@@ -35,6 +38,10 @@ class Preload(SimModule):
     def finish(self):
         print("total prediction: " + str(self.total_predictions))
         print("accuracy: " + str(self.correct / self.total_predictions))
+        print("converge: " + str(self.correct / self.num_launched))
+        print("timeliness: min -  " + str(min(self.timeliness)))
+        print("timeliness: max - " + str(max(self.timeliness)))
+        print("timeliness: average - " + str(sum(self.timeliness) / len(self.timeliness)))
 
     # method to handle the event type being called
     def preload(self, event):
@@ -59,11 +66,16 @@ class Preload(SimModule):
     # method to verify the preload result
     def verify(self, event):
         # set time margin
+        if self.prev_app_launched != event:
+            self.num_launched += 1
+        self.prev_app_launched = event
         margin = datetime.timedelta(seconds=5 * 60)
         app_id, timestamp = self.prediction
         if timestamp is not None and event.timestamp - timestamp < margin and event.app_id == app_id:
             self.correct += 1
             self.prediction = (None, None)
+            time_diff = (event.timestamp - timestamp).total_seconds()
+            self.timeliness.append(time_diff)
 
         # update current index to correct interval
         self.index = event.timestamp.hour // self.interval_time
