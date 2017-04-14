@@ -1,8 +1,6 @@
 from sim_interface import SimModule
-from events import EventType, Event, ScreenEvent
-import device
+from events import EventType, Event
 import datetime
-from math import exp
 from device import ScreenState
 
 
@@ -13,6 +11,7 @@ class Preload(SimModule):
         self.module_type = module_type
         self.simulator = simulator
         self.freq_count_list = []
+
         # app, timestamp, tuple structure for prediction
         self.prediction = (None, None)
         self.total_predictions = 0
@@ -25,9 +24,16 @@ class Preload(SimModule):
         self.intervals = 24 // self.interval_time
         self.time_expon = 1
         self.index = 0
+
+        # new variables to keep track of app launched
         self.num_launched = 0
-        self.timeliness = []
         self.prev_app_launched = None
+
+        # new variables to record timeliness stats
+        self.timeliness_min = 0
+        self.timeliness_max = 0
+        self.timeliness_sum = 0
+        self.timeliness_count = 0
 
     def build(self):
         self.simulator.subscribe(EventType.SCREEN, self.preload, lambda event: event.state == ScreenState.USER_PRESENT)
@@ -36,12 +42,7 @@ class Preload(SimModule):
             self.freq_count_list.append({})
 
     def finish(self):
-        print("total prediction: " + str(self.total_predictions))
-        print("accuracy: " + str(self.correct / self.total_predictions))
-        print("converge: " + str(self.correct / self.num_launched))
-        print("timeliness: min -  " + str(min(self.timeliness)))
-        print("timeliness: max - " + str(max(self.timeliness)))
-        print("timeliness: average - " + str(sum(self.timeliness) / len(self.timeliness)))
+        pass
 
     # method to handle the event type being called
     def preload(self, event):
@@ -50,7 +51,7 @@ class Preload(SimModule):
 
         # appends the corresponding number of index to the freq_count_list
         for app in self.freq_count_list[self.index]:
-            self.freq_count_list[self.index].update({app: self.freq_count_list[self.index][app] * 0.5})
+            self.freq_count_list[self.index][app] *= 0.5
 
         # check Screen On event and preloads the app that has the highest frequency of usage
         # before preloading the app check to see if it is morning, afternoon or night and then preload the
@@ -75,27 +76,26 @@ class Preload(SimModule):
             self.correct += 1
             self.prediction = (None, None)
             time_diff = (event.timestamp - timestamp).total_seconds()
-            self.timeliness.append(time_diff)
+            if time_diff > self.timeliness_max:
+                self.timeliness_max = time_diff
+            elif time_diff < self.timeliness_min:
+                self.timeliness_min = time_diff
+            self.timeliness_sum += time_diff
+            self.timeliness_count += 1
 
         # update current index to correct interval
         self.index = event.timestamp.hour // self.interval_time
 
         # update freq count dictionary
         if event.app_id in self.freq_count_list[self.index]:
-            self.freq_count_list[self.index].update({event.app_id: self.freq_count_list[self.index][event.app_id] + 1})
+            self.freq_count_list[self.index][event.app_id] += 1
         else:
             self.freq_count_list[self.index].update({event.app_id: 1})
 
-            # for each app event in the frequency table, need to add a time_expon factor where it is decremented
-            # at an log rate when verify is called every app in the corresponding freq_count table will
-            # be logged except for the app that is called
-
-            # To-Do
-            # make every constant a setting
-            # 3 stats for preloaders: accuracy, coverage, timeliness
-
-        # To-Do
-        # make every constant a setting
-
     def print_stats(self, output):
-        pass
+        output.write("total prediction: %s\n" % self.total_predictions)
+        output.write("accuracy: %s\n" % (self.correct / self.total_predictions))
+        output.write("converge: %s\n" % (self.correct / self.num_launched))
+        output.write("timeliness: min -  %s\n" % self.timeliness_min)
+        output.write("timeliness: max - %s\n" % self.timeliness_max)
+        output.write("timeliness: average - %s\n" % (self.timeliness_sum * 1.0 / self.timeliness_count))
