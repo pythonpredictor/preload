@@ -7,6 +7,7 @@ class SimModuleType(Enum):
     PRELOAD_PREDICTOR = 'preload-predictor'
     REUSE_PREDICTOR = 'reuse-predictor'
     MEMORY_MANAGER = 'memory-manager'
+    FREQUENCY_COUNTER = 'frequency-counter'
 
 
 class SimModule(metaclass=ABCMeta):
