@@ -1,5 +1,5 @@
 from sim_interface import SimModule
-from events import EventType, Event
+from events import EventType, Event, SimAlarm
 import datetime
 from device import ScreenState
 
@@ -35,6 +35,9 @@ class Preload(SimModule):
         self.timeliness_sum = 0
         self.timeliness_count = 0
 
+        # add an alarm
+        self.alarm = None
+
     def build(self):
         self.simulator.subscribe(EventType.SCREEN, self.preload, lambda event: event.state == ScreenState.USER_PRESENT)
         self.simulator.subscribe(EventType.APP_ACTIVITY_USAGE, self.verify)
@@ -44,14 +47,20 @@ class Preload(SimModule):
     def finish(self):
         pass
 
-    # method to handle the event type being called
-    def preload(self, event):
-        # gets the current time and converts that into an index
-        self.index = event.timestamp.hour // self.interval_time
-
-        # appends the corresponding number of index to the freq_count_list
+    def decrement(self):
         for app in self.freq_count_list[self.index]:
             self.freq_count_list[self.index][app] *= 0.5
+
+    # method to handle the event type being called
+    def preload(self, event):
+        # subscribe to an alarm at first preload
+        if self.alarm is None:
+            self.alarm = SimAlarm(self.simulator.get_current_time(), self.decrement,
+                                  datetime.timedelta(hours=self.interval_time))
+            self.simulator.register_alarm(self.alarm)
+
+        # gets the current time and converts that into an index
+        self.index = event.timestamp.hour // self.interval_time
 
         # check Screen On event and preloads the app that has the highest frequency of usage
         # before preloading the app check to see if it is morning, afternoon or night and then preload the
@@ -60,12 +69,16 @@ class Preload(SimModule):
         # get hour of the time out of this current_time
         if len(self.freq_count_list[self.index]) > 0:
             highest_app = max(self.freq_count_list[self.index], key=self.freq_count_list[self.index].get)
-            self.total_predictions += 1
-            self.prediction = (highest_app, event.timestamp)
-            self.simulator.broadcast(Event(event.timestamp, EventType.PRELOAD_APP))
+            if self.freq_count_list[self.index][highest_app] > 20:
+                self.total_predictions += 1
+                self.prediction = (highest_app, event.timestamp)
+                self.simulator.broadcast(Event(event.timestamp, EventType.PRELOAD_APP))
 
     # method to verify the preload result
     def verify(self, event):
+        if self.alarm is not None:
+            self.alarm.cancel()
+
         # set time margin
         if self.prev_app_launched != event:
             self.num_launched += 1
