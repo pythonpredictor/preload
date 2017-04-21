@@ -20,7 +20,8 @@ class Preload(SimModule):
         # new variables, thinking about making it similar to freq_count
         # list of dictionaries [{morn_freq}, {aftn_freq}, {ngt_freq}]
         # freq_dict_index(time) -> the interval index
-        self.interval_time = int(module_settings["interval_time"])
+        self.interval_time = int(module_settings['interval_time'])
+        self.depreciation = float(module_settings['depreciation'])
         self.intervals = 24 // self.interval_time
         self.time_expon = 1
         self.index = 0
@@ -43,21 +44,24 @@ class Preload(SimModule):
         self.simulator.subscribe(EventType.APP_ACTIVITY_USAGE, self.verify)
         for x in range(self.intervals):
             self.freq_count_list.append({})
+        self.alarm = SimAlarm(self.simulator.get_current_time(), self.decrement,
+                              datetime.timedelta(hours=self.interval_time))
+        self.simulator.register_alarm(self.alarm)
 
     def finish(self):
         pass
 
     def decrement(self):
         for app in self.freq_count_list[self.index]:
-            self.freq_count_list[self.index][app] *= 0.5
+            self.freq_count_list[self.index][app] *= self.depreciation
 
     # method to handle the event type being called
     def preload(self, event):
         # subscribe to an alarm at first preload
-        if self.alarm is None:
-            self.alarm = SimAlarm(self.simulator.get_current_time(), self.decrement,
-                                  datetime.timedelta(hours=self.interval_time))
-            self.simulator.register_alarm(self.alarm)
+        # if self.alarm is None:
+        #     self.alarm = SimAlarm(self.simulator.get_current_time(), self.decrement,
+        #                           datetime.timedelta(hours=self.interval_time))
+        #     self.simulator.register_alarm(self.alarm)
 
         # gets the current time and converts that into an index
         self.index = event.timestamp.hour // self.interval_time
@@ -76,8 +80,8 @@ class Preload(SimModule):
 
     # method to verify the preload result
     def verify(self, event):
-        if self.alarm is not None:
-            self.alarm.cancel()
+        # if self.alarm is not None:
+        #     self.alarm.cancel()
 
         # set time margin
         if self.prev_app_launched != event:
