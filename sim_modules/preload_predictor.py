@@ -110,6 +110,8 @@ class Preload(SimModule):
             self.freq_count_list[self.index].update({event.app_id: 1})
 
     def print_stats(self, output):
+        output.write("num correct: %s\n" % self.correct)
+
         output.write("total prediction: %s\n" % self.total_predictions)
         output.write("accuracy: %s\n" % (self.correct / self.total_predictions))
         output.write("converge: %s\n" % (self.correct / self.num_launched))
